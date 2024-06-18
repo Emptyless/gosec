@@ -139,6 +139,7 @@ directory you can supply `./...` as the input argument.
 - G112: Potential slowloris attack
 - G113: Usage of Rat.SetString in math/big with an overflow (CVE-2022-23772)
 - G114: Use of net/http serve function that has no support for setting timeouts
+- G115: Potential integer overflow when converting between integer types
 - G201: SQL query construction using format string
 - G202: SQL query construction using string concatenation
 - G203: Use of unescaped data in HTML templates
@@ -229,6 +230,12 @@ You can also configure the hard-coded credentials rule `G101` with additional pa
     }
 }
 ```
+
+#### Go version
+
+Some rules require a specific Go version which is retrieved from the Go module file present in the project. If this version cannot be found, it will fallback to Go runtime version.
+
+The Go module version is parsed using the `go list` command which in some cases might lead to performance degradation. In this situation, the go module version can be easily provided by setting the environment variable `GOSECGOVERSION=go1.21.1`.
 
 ### Dependencies
 
